@@ -19,6 +19,13 @@ A credential harvesting framework that creates a fake Telegram login interface t
 3. Validates credentials against real web.telegram.org using Puppeteer
 4. Redirects target to real Telegram upon success
 
+## 🎥 Demonstration Video
+These videos demonstrate two different uses of the tool.
+### LOGGED OUT - web browser
+[![phishgram Demo Video for LOGGED OUT](https://img.youtube.com/vi/vSOdX14e7jI/0.jpg)](https://www.youtube.com/watch?v=vSOdX14e7jI)
+### LOGGED IN - mobile mini app
+[![phishgram Demo Video for LOGGED IN](https://img.youtube.com/vi/MBKUMNTbzTo/0.jpg)](https://www.youtube.com/watch?v=MBKUMNTbzTo)
+
 ## 📋 Prerequisites
 
 - **Node.js**: v18.0.0 or higher
