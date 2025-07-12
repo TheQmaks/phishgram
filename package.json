@@ -1,0 +1,33 @@
+{
+  "name": "phishgram",
+  "version": "1.0.0",
+  "description": "Toolkit for authorized red-team simulations on Telegram",
+  "type": "module",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node scripts/setup.js local",
+    "setup": "node scripts/setup.js",
+    "setup:local": "node scripts/setup.js local",
+    "setup:bot": "node scripts/setup.js bot-only",
+    "dev": "nodemon backend/server.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/claude-code": "^1.0.31",
+    "@telegram-apps/telegram-ui": "^2.1.8",
+    "express": "^4.18.2",
+    "geoip-lite": "^1.4.10",
+    "puppeteer": "^24.10.2",
+    "ws": "^8.14.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "serve": "^14.2.1"
+  },
+  "keywords": [
+    "telegram",
+    "phishing",
+    "puppeteer"
+  ],
+  "author": "Anatoliy Fedorenko",
+  "license": "MIT"
+}

@@ -1,0 +1,705 @@
+:root {
+    --color-primary: #3390ec;
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-text: #000000;
+    --color-text-secondary: #707579;
+    --color-placeholders: #a2acb4;
+    --color-borders: #dadce0;
+    --color-borders-input: #dadce0;
+    --color-background: #ffffff;
+    --color-background-secondary: #f4f4f5;
+    --color-telegram-blue: #3390ec;
+    --border-radius-default: 0.75rem;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --color-primary-shade: #2e82d5;
+    --color-primary-shade-darker: #2874c7;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    overflow-x: hidden;
+}
+
+/* Auth Container */
+#auth-phone-number-form {
+    overflow-y: auto;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-form {
+    width: 100%;
+    max-width: 25.5rem;
+    margin: 0 auto;
+    padding: 1rem;
+    text-align: center;
+}
+
+#logo {
+    display: block;
+    width: 7.5rem;
+    height: 7.5rem;
+    margin-right: auto;
+    margin-bottom: 1.75rem;
+    margin-left: auto;
+    background: url("../assets/img/logo.jpg") center no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+    border: 2px solid var(--color-borders);
+}
+
+@media (min-width: 600px) and (min-height: 450px) {
+    #logo {
+        width: 10rem;
+        height: 10rem;
+        margin-bottom: 2.5rem;
+    }
+}
+
+h1 {
+    font-size: 1.25rem;
+    line-height: 1;
+    font-weight: var(--font-weight-normal);
+    margin-bottom: 1rem;
+}
+
+@media (min-width: 600px) {
+    h1 {
+        font-size: 2rem;
+        line-height: 1.5;
+    }
+}
+
+.note {
+    margin-bottom: 2.5rem;
+    font-size: 0.875rem;
+    line-height: 1.35;
+    color: var(--color-text-secondary);
+}
+
+@media (min-width: 600px) {
+    .note {
+        margin-bottom: 3rem;
+        font-size: 1rem;
+    }
+}
+
+/* Input Group */
+.input-group {
+    position: relative;
+    margin-bottom: 1.125rem;
+}
+
+.input-group label {
+    pointer-events: none;
+    cursor: text;
+    position: absolute;
+    top: 0.6875rem;
+    left: 1rem;
+    transform-origin: left center;
+    display: block;
+    padding: 0 0.3125rem;
+    font-size: 1rem;
+    font-weight: var(--font-weight-normal);
+    color: var(--color-placeholders);
+    white-space: nowrap;
+    background-color: var(--color-background);
+    transition: transform 0.15s ease-out, color 0.15s ease-out;
+}
+
+.input-group.touched label {
+    transform: scale(0.75) translate(0, -2rem);
+    color: var(--color-text-secondary);
+}
+
+.input-group .form-control:focus + label {
+    transform: scale(0.75) translate(0, -2rem);
+    color: var(--color-primary);
+}
+
+.form-control {
+    --border-width: 1px;
+    display: block;
+    width: 100%;
+    height: 3rem;
+    padding: calc(0.75rem - var(--border-width)) calc(1.1875rem - var(--border-width)) 0.6875rem;
+    border: var(--border-width) solid var(--color-borders-input);
+    border-radius: var(--border-radius-default);
+    font-size: 1rem;
+    line-height: 1.25rem;
+    color: var(--color-text);
+    -webkit-appearance: none;
+    background-color: var(--color-background);
+    outline: none;
+    transition: border-color 0.15s ease;
+}
+
+.form-control::placeholder {
+    color: var(--color-placeholders);
+    opacity: 0.5;
+}
+
+/* Show placeholder only when input is empty and focused */
+.form-control:not(:focus):not(.phone-input-field)::placeholder {
+    opacity: 0;
+}
+
+.form-control:focus:not(.phone-input-field)::placeholder {
+    opacity: 0.5;
+}
+
+.form-control:hover {
+    border-color: var(--color-primary);
+}
+
+.form-control:hover + label,
+.form-control:hover ~ label {
+    color: var(--color-primary);
+}
+
+.form-control:focus {
+    border-color: var(--color-primary);
+    box-shadow: inset 0 0 0 1px var(--color-primary);
+    caret-color: var(--color-primary);
+}
+
+.form-control:focus + label,
+.form-control:focus ~ label {
+    color: var(--color-primary);
+}
+
+/* Fallback for browsers without :has support */
+.input-group:focus-within label {
+    color: var(--color-primary);
+}
+
+/* Highlight label when dropdown is open */
+.input-group.dropdown-open .form-control {
+    border-color: var(--color-primary);
+    box-shadow: inset 0 0 0 1px var(--color-primary);
+}
+
+.input-group.dropdown-open label {
+    color: var(--color-primary);
+}
+
+/* Country Code Input */
+.CountryCodeInput {
+    position: relative;
+}
+
+.CountryCodeInput .input-group {
+    cursor: pointer;
+    z-index: 10;
+}
+
+.CountryCodeInput .css-icon-down {
+    position: absolute;
+    top: 50%;
+    right: 21px;
+    height: 0;
+    width: 0;
+    border: solid var(--color-text-secondary);
+    border-radius: 1px;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 5px;
+    margin-top: -9px;
+    transform: rotate(45deg);
+}
+
+.CountryCodeInput.ready .css-icon-down {
+    transition: margin-top 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.CountryCodeInput .css-icon-down.open {
+    margin-top: -4px;
+    transform: rotate(225deg);
+    border-color: var(--color-primary);
+}
+
+/* Override hover effect for country input when dropdown is open */
+.CountryCodeInput .input-group.dropdown-open .form-control:hover + label {
+    color: var(--color-primary);
+}
+
+/* Keep label primary color when dropdown is open */
+.CountryCodeInput .input-group.dropdown-open label {
+    color: var(--color-primary) !important;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: none;
+    max-height: 23.5rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-top: 0.25rem;
+    background: var(--color-background);
+    border: 1px solid var(--color-borders);
+    border-radius: var(--border-radius-default);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform-origin: top center;
+    transform: scale(0.95);
+    opacity: 0;
+    transition: all 0.15s ease;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.dropdown-menu::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.dropdown-menu {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.dropdown-menu.show {
+    display: block;
+    transform: scale(1);
+    opacity: 1;
+}
+
+.MenuItem {
+    display: flex;
+    align-items: center;
+}
+
+.MenuItem button {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.MenuItem button:hover {
+    background-color: var(--color-background-secondary);
+}
+
+.country-flag {
+    margin-right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.country-flag img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.country-name {
+    overflow: hidden;
+    margin-right: 1rem;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+}
+
+.country-code {
+    margin-left: auto;
+    padding-right: 0.25rem;
+    opacity: 0.5;
+}
+
+/* Button Styling */
+.Button {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 3.5rem;
+    padding: 0.625rem;
+    border: 0;
+    border-radius: var(--border-radius-default);
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-normal);
+    line-height: 1.2;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background-color: transparent;
+    outline: none;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+.Button.size-smaller {
+    min-height: 2.75rem;
+    padding: 0.3125rem;
+}
+
+.Button.color-primary {
+    color: var(--color-white);
+    background-color: var(--color-primary);
+}
+
+.Button.color-primary:hover {
+    background-color: var(--color-primary-shade);
+}
+
+.Button.color-primary:active {
+    background-color: var(--color-primary-shade-darker);
+}
+
+.Button.isText {
+    background: none;
+    color: var(--color-primary);
+    padding: 0.5rem 0;
+    min-height: auto;
+    text-decoration: none;
+}
+
+.Button.isText:hover {
+    opacity: 0.8;
+}
+
+/* Form Layout */
+.form {
+    min-height: 26.25rem;
+}
+
+.Button {
+    margin-top: 2.75rem;
+}
+
+.Button + .Button {
+    margin-top: 1rem;
+}
+
+@media (min-width: 600px) and (min-height: 450px) {
+    .auth-form {
+        padding: 6.8125rem 1.5rem 1.5rem;
+    }
+}
+
+/* Loading indicator */
+.loading-indicator {
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+
+/* Loading state for button */
+.Button.loading {
+    opacity: 0.7;
+    cursor: not-allowed;
+    position: relative;
+}
+
+.Button.loading::after {
+    content: "";
+    position: absolute;
+    right: 1rem;
+    top: calc(50% - 8px);
+    width: 16px;
+    height: 16px;
+    background: url("../assets/img/loading.svg") center/contain no-repeat;
+    filter: brightness(0) invert(1);
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Error message styles */
+.error-message {
+    color: #d93025;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    text-align: center;
+    padding: 0.5rem;
+    background-color: rgba(217, 48, 37, 0.1);
+    border-radius: 4px;
+}
+
+/* Input group with error */
+.input-group.error .form-control {
+    border-color: #e53935;
+    border-width: 2px;
+    padding: calc(0.75rem - 2px) calc(1.1875rem - 2px) 0.6875rem;
+}
+
+.input-group.error .form-control:focus {
+    border-color: #e53935;
+    border-width: 2px;
+    box-shadow: none;
+}
+
+.input-group.error label {
+    color: #e53935 !important;
+    transform: scale(0.75) translate(0, -2rem);
+}
+
+/* Force label to stay visible when error */
+.input-group.error.with-label label {
+    transform: scale(0.75) translate(0, -2rem);
+}
+
+/* Phone input - simple approach */
+.phone-input-field {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    letter-spacing: normal;
+}
+
+.phone-input-field::placeholder {
+    color: #c0c0c0;
+    opacity: 1;
+}
+
+.phone-input-field:focus::placeholder {
+    color: #e0e0e0;
+}
+
+/* Code input specific styles */
+.code-input-field {
+    text-align: left;
+    font-size: 1.125rem;
+    letter-spacing: normal;
+    font-weight: 400;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding-left: 1rem;
+}
+
+/* Monkey animation */
+.monkey-animation {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Phone number display in code form */
+#code-form h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+#code-form h1 #phone-display {
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+/* Edit phone button */
+.auth-number-edit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #93979a;
+    padding: 0.25rem;
+    vertical-align: middle;
+    transition: color 0.2s;
+}
+
+.auth-number-edit:hover {
+    color: #707579;
+}
+
+/* Icon font */
+@font-face {
+    font-family: "icons";
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+    src: url("../assets/fonts/icons.woff2") format("woff2"), url("../assets/fonts/icons.woff") format("woff");
+}
+
+.icon {
+    font-family: "icons" !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-edit {
+    font-size: 1.25rem;
+}
+
+.icon-edit::before {
+    content: "\f14d";
+}
+
+/* Auth form styles */
+.auth-subtitle {
+    color: var(--color-text-secondary);
+    text-align: center;
+    margin: 0 0 2rem;
+    font-size: 0.875rem;
+    line-height: 1.4;
+}
+
+/* Code input group */
+.code-input-group {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+/* Error text */
+.error-text {
+    position: absolute;
+    bottom: -1.5rem;
+    left: 0;
+    right: 0;
+    color: #dc3545;
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+/* Code input with error */
+.code-input-group.error .form-control {
+    border-color: #dc3545;
+    border-width: 2px;
+    padding: calc(0.75rem - 2px) calc(1.1875rem - 2px) 0.6875rem;
+}
+
+.code-input-group.error .form-control:focus {
+    border-color: #dc3545;
+    border-width: 2px;
+    box-shadow: none;
+}
+
+.code-input-group.error label {
+    color: #dc3545 !important;
+    transform: scale(0.75) translate(0, -2rem);
+}
+
+/* Force label to stay visible when error */
+.code-input-group.error.with-label label {
+    transform: scale(0.75) translate(0, -2rem);
+}
+
+/* Hide buttons in code form */
+#code-form .Button {
+    display: none;
+}
+
+/* Password form styles */
+#password-form {
+    overflow-y: auto;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.password-input-group {
+    position: relative;
+    margin-bottom: 1.125rem;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #8b94a3;
+    padding: 0.5rem;
+    transition: color 0.2s;
+}
+
+.toggle-password:hover {
+    color: #707579;
+}
+
+/* More specific styles for password input */
+.input-group.password-input-group .toggle-password {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 0.5rem;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.5rem;
+    color: var(--color-text-secondary);
+    opacity: 0.7;
+    outline: none !important;
+    transition: opacity 0.2s, color 0.2s;
+}
+
+.input-group.password-input-group .toggle-password:hover {
+    opacity: 1;
+    color: var(--color-text-secondary);
+}
+
+.icon-eye-crossed::before {
+    content: "\f153";
+}
+
+.icon-eye::before {
+    content: "\f155";
+}
+
+/* Password input with error */
+.password-input-group.error .form-control {
+    border-color: #e53935;
+    border-width: 2px;
+    padding: calc(0.75rem - 2px) calc(1.1875rem - 2px) 0.6875rem;
+}
+
+.password-input-group.error .form-control:focus {
+    border-color: #e53935;
+    border-width: 2px;
+    box-shadow: none;
+}
+
+.password-input-group.error label {
+    color: #e53935 !important;
+    transform: scale(0.75) translate(0, -2rem);
+}
+
+.password-input-group.error.with-label label {
+    transform: scale(0.75) translate(0, -2rem);
+}
