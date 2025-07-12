@@ -1,4 +1,4 @@
-# phishgram - Telegram Web Authentication
+# phishgram - Toolkit for authorized red-team simulations on Telegram
 
 > ⚠️ **LEGAL DISCLAIMER**: This tool is intended ONLY for authorized security testing, red-team operations, and educational purposes. Using this tool without explicit permission from the target is ILLEGAL and unethical. The authors are not responsible for any misuse or damage caused by this tool.
 
